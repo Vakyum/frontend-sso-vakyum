@@ -3,7 +3,7 @@ import companyIdentity from './components/companyIdentity.vue'
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col items-center justify-center p-4">
+  <div class="min-h-screen flex flex-col items-center justify-center gap-6 p-4">
     <companyIdentity />
     <div class="flex flex-col items-center justify-center gap-0.1 p-6 bg-zinc-900/60 border border-zinc-800/80 rounded-2xl backdrop-blur">
       <h1 class="text-xl sm:text-2xl font-bold text-white">Connexion</h1>
