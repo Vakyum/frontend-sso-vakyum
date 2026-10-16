@@ -10,7 +10,7 @@ const routes = [
     {
         path: '/register',
         name: 'register',
-        component: () => import('../views/RegisterView.vue') // Crée ce fichier dans src/views si besoin
+        component: () => import('../views/RegisterView.vue')
     },
     {
         path: '/:pathMatch(.*)*',
