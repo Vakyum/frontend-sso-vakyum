@@ -1,6 +1,26 @@
 <script setup>
+import {computed, provide, ref} from 'vue'
+
 import companyIdentity from '../components/companyIdentity.vue'
-import rememberCheck from '../components/rememberCheck.vue'
+import rememberCheck from '../components/LoginForm/rememberCheck.vue'
+import AccessPasswordReset from "../components/LoginForm/AccessPasswordReset.vue";
+
+const email = ref('')
+const step = ref('login')
+
+const updateEmail = (newEmail) => {
+  // For send email in case of Password reset -> AccessPasswordReset component.
+  email.value = newEmail
+}
+
+provide('userEmail', email)
+
+const showPasswordReset = ref(false)
+
+const togglePasswordReset = () => {
+  // To show AccessPasswordReset on click on "Forgot password".
+  showPasswordReset.value = !showPasswordReset.value
+}
 </script>
 
 <template>
@@ -13,6 +33,7 @@ import rememberCheck from '../components/rememberCheck.vue'
             type="email"
             name="email"
             id="email"
+            v-model="email"
             placeholder="Email"
             required
             class="w-80 h-12 px-4 rounded-xl bg-zinc-800/80 text-white border border-zinc-700 placeholder-zinc-500
@@ -27,7 +48,7 @@ import rememberCheck from '../components/rememberCheck.vue'
               focus:outline-none focus:border-zinc-500" />
         <div class="flex flex-row text-xs leading-none justify-between gap-15">
           <rememberCheck />
-          <span class="hover:text-white active:text-cyan-700 cursor-pointer">Mot de passe oublié ?</span>
+          <span @click="togglePasswordReset()" class="hover:text-white active:text-cyan-700 cursor-pointer">Mot de passe oublié ?</span>
         </div>
         <button
             type="submit"
@@ -48,5 +69,17 @@ import rememberCheck from '../components/rememberCheck.vue'
         </RouterLink>
       </p>
     </div>
+    <Transition
+        enter-active-class="transition duration-300 ease-out"
+        enter-from-class="transform scale-95 opacity-0 -translate-y-2"
+        enter-to-class="transform scale-100 opacity-100 translate-y-0"
+        leave-active-class="transition duration-200 ease-in"
+        leave-from-class="transform scale-100 opacity-100 translate-y-0"
+        leave-to-class="transform scale-95 opacity-0 -translate-y-2"
+    >
+      <div v-if="showPasswordReset">
+        <AccessPasswordReset />
+      </div>
+    </Transition>
   </div>
 </template>

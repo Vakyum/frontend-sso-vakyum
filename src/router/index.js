@@ -13,6 +13,11 @@ const routes = [
         component: () => import('../views/RegisterView.vue')
     },
     {
+        path: '/PasswordReset',
+        name: 'PasswordReset',
+        component: () => import('../views/PasswordResetView.vue')
+    },
+    {
         path: '/:pathMatch(.*)*',
         name: 'not-found',
         component: () => import('../views/NotFoundView.vue')
