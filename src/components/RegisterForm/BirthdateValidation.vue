@@ -30,6 +30,7 @@ const inputClasses = computed(() => {
 
 <template>
   <div class="flex flex-col gap-2">
+    <label for="birthdate" class="text-xs">Date de naissance</label>
     <input
         type="date"
         name="birthdate"
